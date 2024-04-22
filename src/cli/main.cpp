@@ -7,7 +7,7 @@ using namespace CGL;
 
 int main() {
     double growthPercentage;
-    std::cout << "Enter the growth percentage: ";
+    std::cout << "Enter the per trade risk percentage: ";
     std::cin >> growthPercentage;
 
     int riskTimeToNextLevel;
@@ -22,10 +22,15 @@ int main() {
         std::cout << "Enter the account size: ";
         std::cin >> accountSize;
 
+        double stopLossPerc;
+
+        std::cout << "Enter stop loss Percentage: ";
+        std::cin >> stopLossPerc;
+
         const double currLevel = CurrentLevelFind(leveler, accountSize);
         const double nextLevel = NextLevelGet(leveler, currLevel);
 
-        const double currLevelPosSize = CurrentLevelPositionSize(leveler, accountSize, Perc2Raw(2));
+        const double currLevelPosSize = CurrentLevelPositionSize(leveler, accountSize, Perc2Raw(stopLossPerc));
 
         std::cout << "\nResults:\n";
         std::cout << "Current Level : " << currLevel << std::endl;
